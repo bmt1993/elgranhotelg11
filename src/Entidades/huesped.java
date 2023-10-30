@@ -1,6 +1,8 @@
 
 package Entidades;
 
+import java.math.BigInteger;
+
 
 public class huesped {
     
@@ -11,6 +13,11 @@ public class huesped {
     private String telefono;
     private String domicilio;
     private String pais;
+    
+    
+    public huesped(int dni){
+        this.dni=dni;
+    }
 
     public huesped(int dni, String nombre, String apellido, String email, String telefono, String domicilio, String pais) {
         this.dni = dni;
@@ -82,6 +89,8 @@ public class huesped {
         this.pais = pais;
     }
 
+    
+   
     
     
     

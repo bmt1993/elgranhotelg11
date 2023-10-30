@@ -7,11 +7,18 @@ public class tipohabitacion {
     private String categoria;
     private int camassimples;
     private int camasdobles;
+    private int tipo;
+    private double preciopornoche;
 
-    public tipohabitacion(String categoria, int camassimples, int camasdobles) {
+    public tipohabitacion() {
+    }
+
+    public tipohabitacion(String categoria, int camassimples, int camasdobles, int tipo, double preciopornoche) {
         this.categoria = categoria;
         this.camassimples = camassimples;
         this.camasdobles = camasdobles;
+        this.tipo = tipo;
+        this.preciopornoche = preciopornoche;
     }
 
     public String getCategoria() {
@@ -38,8 +45,31 @@ public class tipohabitacion {
         this.camasdobles = camasdobles;
     }
 
+    public int getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
+    }
+
+    public double getPreciopornoche() {
+        return preciopornoche;
+    }
+
+    public void setPreciopornoche(double preciopornoche) {
+        this.preciopornoche = preciopornoche;
+    }
     
     
+    
+    public void determinartipo(int cat,int camassimples,int camasdobles) {
+    
+    
+    
+    
+    
+    }
     
     
     

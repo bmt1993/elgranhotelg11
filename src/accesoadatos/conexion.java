@@ -25,7 +25,7 @@ public class conexion {
             try {
                 Class.forName("org.mariadb.jdbc.Driver");
                 connection=DriverManager.getConnection(URL+DB,USUARIO,PASSWORD);
-                JOptionPane.showMessageDialog(null, "Conectado existosamente a la base de datos");
+//                JOptionPane.showMessageDialog(null, "Conectado existosamente a la base de datos");
             } catch (ClassNotFoundException ex) {
                 JOptionPane.showMessageDialog(null,"Error al cargar los drivers de conexión a la base de datos");
             } catch (SQLException ex) {

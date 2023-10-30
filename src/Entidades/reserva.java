@@ -8,7 +8,7 @@ import java.util.HashSet;
 
 public class reserva {
     
-    private HashSet<habitacion> habitaciones;
+    private habitacion habitacion;
     private huesped huesped;
     private LocalDate checkin;
     private LocalDate checkout;
@@ -16,8 +16,22 @@ public class reserva {
     private double montobase;
     private double montofinal;
 
-    public reserva(HashSet<habitacion> habitaciones, huesped huesped, LocalDate checkin, LocalDate checkout, String estadoreserva, double montobase, double montofinal) {
-        this.habitaciones = habitaciones;
+    public reserva(habitacion habitacion, huesped huesped, LocalDate checkin, LocalDate checkout, String estadoreserva) {
+        this.habitacion = habitacion;
+        this.huesped = huesped;
+        this.checkin = checkin;
+        this.checkout = checkout;
+        this.estadoreserva = estadoreserva;
+    }
+
+    public reserva() {
+    }
+    
+    
+    
+
+    public reserva(habitacion habitacion, huesped huesped, LocalDate checkin, LocalDate checkout, String estadoreserva, double montobase, double montofinal) {
+        this.habitacion = habitacion;
         this.huesped = huesped;
         this.checkin = checkin;
         this.checkout = checkout;
@@ -26,14 +40,12 @@ public class reserva {
         this.montofinal = montofinal;
     }
 
-    public HashSet<habitacion> getHabitaciones() {
-        return habitaciones;
+    public habitacion getHabitacion() {
+        return habitacion;
     }
-    
-   
 
-    public void setHabitaciones(HashSet<habitacion> habitaciones) {
-        this.habitaciones = habitaciones;
+    public void setHabitacion(habitacion habitacion) {
+        this.habitacion = habitacion;
     }
 
     public huesped getHuesped() {
@@ -83,14 +95,7 @@ public class reserva {
     public void setMontofinal(double montofinal) {
         this.montofinal = montofinal;
     }
-    
-    
-    
-    
-   
 
-    
-    
     
     
     

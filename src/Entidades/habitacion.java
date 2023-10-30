@@ -1,6 +1,8 @@
 
 package Entidades;
 
+import java.time.LocalDate;
+
 
 public class habitacion {
     
@@ -9,11 +11,24 @@ public class habitacion {
     private String estadohabitacion;
     private tipohabitacion tipohabitacion;
 
+    public habitacion(int idhabitacion, int piso, tipohabitacion tipohabitacion) {
+        this.idhabitacion = idhabitacion;
+        this.piso = piso;
+        this.tipohabitacion = tipohabitacion;
+    }
+    
+    
+    
+
     public habitacion(int idhabitacion, int piso, String estadohabitacion, tipohabitacion tipohabitacion) {
         this.idhabitacion = idhabitacion;
         this.piso = piso;
         this.estadohabitacion = estadohabitacion;
         this.tipohabitacion = tipohabitacion;
+    }
+
+    public habitacion() {
+        
     }
 
     public int getIdhabitacion() {
@@ -52,4 +67,9 @@ public class habitacion {
     
     
     
+    
+    
+    
 }
+
+
