@@ -8,6 +8,7 @@ package accesoadatos;
 import Entidades.habitacion;
 import Entidades.huesped;
 import Entidades.reserva;
+import Entidades.tipohabitacion;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -50,16 +51,63 @@ public class reservadata {
     }
     
     
+    
+    
+    public void setearmontos(double m1, double m2,int id){
+        
+        // Recibiendo dos parámetros m1 y m2, que corresponden al monto base y adicional respectivamente, guarda
+        // esta información en la base de datos para un determinada reserva, cuyo ID también se pasó por parámetro.
+        
+        String sql = "UPDATE reserva SET montobase=?, montofinal=? WHERE idreserva=?";
+        
+        
+        try{
+            
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setDouble(1,m1);
+            ps.setDouble(2, m2);
+            ps.setInt(3, id);
+            ps.executeUpdate();
+            
+            if(ps.executeUpdate()==1){
+                JOptionPane.showMessageDialog(null,"Los montos han sido cargados exitosamente");
+            }
+            
+        }catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error al conectarse a la base de datos");
+        }
+        
+        
+        
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     public ArrayList<reserva> buscarreservadni(int dni){
         
+        // Devuelve una lista con todas las reservas a nombre de un cliente cuyo DNI se pasó
+        // por parámetro. No discrimina entre pasadas/en curso/futuras/abortadas/parcialmente abortadas.
+        
+        
         int i=0;
-        String sql = "SELECT dni,idhabitacion,checkin,checkout,montobase,montofinal,estadoreserva FROM reserva WHERE dni=?";
+        String sql = "SELECT dni,idhabitacion,checkin,checkout,montobase,montofinal,estadoreserva,idreserva FROM reserva WHERE dni=?";
         
         ArrayList<reserva> res =new ArrayList();
         
         ArrayList<habitacion> hab =new ArrayList();
         
         ArrayList<huesped> hues =new ArrayList();
+        
+   
         
         
         try{
@@ -72,9 +120,12 @@ public class reservadata {
                 reserva res1 = new reserva();
                 habitacion hab1 = new habitacion();
                 huesped hues1=new huesped();
+
+                
                 res.add(res1);
                 hab.add(hab1);
                 hues.add(hues1);
+             
                 res.get(i).setCheckin(rs.getDate("checkin").toLocalDate());
                 res.get(i).setCheckout(rs.getDate("checkout").toLocalDate());
                 res.get(i).setEstadoreserva(rs.getString("estadoreserva"));
@@ -84,6 +135,8 @@ public class reservadata {
                 res.get(i).getHabitacion().setIdhabitacion(rs.getInt("idhabitacion"));
                 res.get(i).setHuesped(hues.get(i));
                 res.get(i).getHuesped().setDni(dni);
+                res.get(i).setIdreserva(rs.getInt("idreserva"));
+                
                 
                 
                 i++;
@@ -106,7 +159,8 @@ public class reservadata {
     
     public ArrayList<reserva> buscarreservafecha(LocalDate f1, LocalDate f2){
         
-        // Conversión de f1 y f2 a número entero:
+        // Recibe dos fechas f1 y f2 por parámetro, y muestra todos los clientes que
+        // se alojaron en el hotel durante ese período de tiempo.
         
         String sql = "SELECT dni,idhabitacion,checkin,checkout,montobase,montofinal,estadoreserva FROM reserva";
         
@@ -178,6 +232,10 @@ public class reservadata {
     
     
     public void abortarreserva(reserva res){
+        
+        // Permite abortar una determinada reserva. Si esa reserva tiene estado 'futura',
+        // el aborto será total, mientras que si tiene estado 'en curso', se tratará de uno parcial.
+        
         String sql;
         if(res.getEstadoreserva().equals("En curso")){
             sql="UPDATE reserva SET estadoreserva='Parcialmente abortadada' WHERE dni=?";
@@ -213,6 +271,9 @@ public class reservadata {
     
     
     public void setearestadoreserva(){
+        
+        // Permite actualizar los estados de las reservas, y para ello compara las
+        // fechas de checkin y checkout con la fecha actual.
         
         
         int cantidad=0;
@@ -394,13 +455,14 @@ public class reservadata {
     
         public void setearprecioabortada(){
             
-            
+//            
 //            LocalDate f1;
 //            LocalDate f2;
 //            double precio;
 //            int id;
+//            int idhabitacion;
 //            
-//            String sql2="SELECT checkin FROM reserva WHERE estadoreserva='Abortada' and montobase='NULL'";
+//            String sql2="SELECT checkin,checkout,idreserva,estadoreserva,idreserva,idhabitacion FROM reserva WHERE montobase is NULL";
 //        
 //        
 //            
@@ -410,57 +472,27 @@ public class reservadata {
 //            ResultSet rs2=ps2.executeQuery();
 //            
 //            
-//                f1=rs2.getDate("checkin").toLocalDate();
-//            
-//            
+//            while(rs2.next()){
+//                if(rs2.getString("estadoreserva").equals("Abortada") || rs2.getString("estadoreserva").equals("Parcialmente abortada")){
+//                    f1=rs2.getDate("checkin").toLocalDate();
+//                    f2=rs2.getDate(sql2).toLocalDate();
+//                    id=rs2.getInt("idreserva");
+//                    idhabitacion=rs2.getInt("idhabitacion");
+//                    break;
+//                }
+//            }
 //            ps2.close();
 //        }catch(SQLException ex){
 //                JOptionPane.showMessageDialog(null,"Error al conectarse con la base de datos6");
-//            }
-//       
-//        String sql3="SELECT checkot FROM reserva WHERE estadoreserva='Abortada' and montobase='NULL'";
-//        
-//        try{
-//            
-//            PreparedStatement ps3=con.prepareStatement(sql2);
-//            ResultSet rs3=ps3.executeQuery();
-//            
-//            
-//                f2=rs3.getDate("checkout").toLocalDate();
-//            
-//            
-//            ps3.close();
-//        }catch(SQLException ex){
-//                JOptionPane.showMessageDialog(null,"Error al conectarse con la base de datos6");
-//            }
-//            
-//            
-//        String sql4="SELECT idhabitacion FROM reserva WHERE estadoreserva='Abortada' and montobase is NULL";
-//        
-//        try{
-//            
-//            PreparedStatement ps4=con.prepareStatement(sql4);
-//            ResultSet rs4=ps4.executeQuery();
-//            
-//            
-//                id=rs4.getInt("idhabitacion");
-//            
-//            
-//            ps4.close();
-//        }catch(SQLException ex){
-//                JOptionPane.showMessageDialog(null,"Error al conectarse con la base de datos6");
-//            }    
-//            
-//            
+//        }
+//           
 //        String sql5="SELECT preciopornoche FROM habitacion WHERE idhabitacion=?";
 //        
 //        try{
 //            
 //            PreparedStatement ps5=con.prepareStatement(sql5);
-//            ps5.setInt(1,id);
+//            ps5.setInt(1,idhabitacion);
 //            ResultSet rs5=ps5.executeQuery();
-//            
-//            
 //                precio=rs5.getDouble("preciopornoche");
 //            
 //            
@@ -489,7 +521,7 @@ public class reservadata {
 //            
 //            
 //            
-            
+//            
             
             
             
@@ -630,12 +662,34 @@ public class reservadata {
 //        
 //        
         
+
         
         
             
         }
 
 
+        
+        
+        public void determinarpreciosabortada(reserva res,int id){
+            
+            
+            String sql = "UPDATE reserva SET montobase=? WHERE idreserva=?";
+            
+            
+            
+            try{
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setDouble(1,res.getHabitacion().getTipohabitacion().getPreciopornoche());
+                ps.setInt(2,id);
+                ps.executeUpdate();
+            }catch(SQLException ex){
+                JOptionPane.showMessageDialog(null,"Error al conectarse con la base de datos1");
+            }
+            
+            
+            
+        }
 
 
 

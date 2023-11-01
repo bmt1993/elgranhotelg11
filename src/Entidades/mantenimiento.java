@@ -43,6 +43,4 @@ public class mantenimiento {
     public void setFechafinm(LocalDate fechafinm) {
         this.fechafinm = fechafinm;
     }
-
-   
 }

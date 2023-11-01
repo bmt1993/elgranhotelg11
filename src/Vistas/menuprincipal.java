@@ -69,7 +69,6 @@ public class menuprincipal extends javax.swing.JFrame {
         jMenuItem7 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(700, 600));
 
         jButton1.setText("Actualizar datos");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -89,23 +88,23 @@ public class menuprincipal extends javax.swing.JFrame {
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
             .addGroup(escritorioLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addContainerGap(419, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(33, 33, 33))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 431, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addContainerGap())
+                .addGap(41, 41, 41))
         );
 
         jMenu1.setText("Reservas");
@@ -131,7 +130,7 @@ public class menuprincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem2);
 
-        jMenuItem3.setText("Setear precio");
+        jMenuItem3.setText("Setear montos");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
@@ -216,12 +215,14 @@ public class menuprincipal extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
         
-        escritorio.removeAll();
-        escritorio.repaint();
+//        escritorio.removeAll();
+//        escritorio.repaint();
         habitacionesdisp hd = new habitacionesdisp();
         hd.setVisible(true);
         escritorio.add(hd);
         escritorio.moveToFront(hd);
+//        jButton1.setVisible(true);
+        
         
         
 //        
@@ -321,8 +322,7 @@ public class menuprincipal extends javax.swing.JFrame {
                 try{
                     boolean existencia=hues.comprobarexistencia(Integer.parseInt(dni));
                     if(existencia==true){
-                        escritorio.removeAll();
-                        escritorio.repaint();
+                    
                         editarreserva er = new editarreserva(Integer.parseInt(dni));
                         er.setVisible(true);
                         escritorio.add(er);
@@ -356,8 +356,8 @@ public class menuprincipal extends javax.swing.JFrame {
                 try{
                     boolean existencia=hues.comprobarexistencia(Integer.parseInt(dni));
                     if(existencia==true){
-                        escritorio.removeAll();
-                        escritorio.repaint();
+//                        escritorio.removeAll();
+//                        escritorio.repaint();
                         buscarreserva br = new buscarreserva(Integer.parseInt(dni));
                         br.setVisible(true);
                         escritorio.add(br);
@@ -382,6 +382,8 @@ public class menuprincipal extends javax.swing.JFrame {
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         // TODO add your handling code here:
+//        escritorio.removeAll();
+//        escritorio.repaint();
         habitaciondata hab = new habitaciondata();
         double indice;
         try{
@@ -396,8 +398,10 @@ public class menuprincipal extends javax.swing.JFrame {
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         // TODO add your handling code here:
-        escritorio.removeAll();
-        escritorio.repaint();
+//        escritorio.removeAll();
+//        escritorio.repaint();
+//        escritorio.removeAll();
+//        escritorio.repaint();
         actualizacionpreciosrelativos apc = new actualizacionpreciosrelativos();
         apc.setVisible(true);
         escritorio.add(apc);
@@ -414,15 +418,50 @@ public class menuprincipal extends javax.swing.JFrame {
         mantenimientodata mtto=new mantenimientodata();
         
         res.setearestadoreserva();
-        mtto.setearestadomantenimiento();
+        mtto.setearestadomtto();
         hab.setearestadohabitaciones();
         hab.setearlibrehasta();
         
+        JOptionPane.showMessageDialog(null,"Los datos han sido correctamente actualizados");
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
+        
+        huespeddata hues=new huespeddata();
+        boolean exception;
+        String dni;
+        dni=JOptionPane.showInputDialog("Ingresar el nro. de DNI del cliente a nombre de la reserva que desea modificar:");
+        do{
+            if(dni!=null){
+                exception=false;
+                try{
+                    boolean existencia=hues.comprobarexistencia(Integer.parseInt(dni));
+                    if(existencia==true){
+//                        escritorio.removeAll();
+//                        escritorio.repaint();
+                        Setearprecio st = new Setearprecio(Integer.parseInt(dni));
+                        st.setVisible(true);
+                        escritorio.add(st);
+                        escritorio.moveToFront(st);
+                    }else{
+                        JOptionPane.showMessageDialog(null,"No existe una reserva a nombre del cliente cuyo nro. de DNI es "+dni+" en la base de datos.");
+                    }
+                }catch(NumberFormatException ex){
+                    JOptionPane.showMessageDialog(null,"Debe ingresar un valor numérico");
+                    exception=true;
+                    dni=JOptionPane.showInputDialog("Ingresar el nro. de DNI del cliente a nombre de la reserva que desea modificar:");
+                }
+            }else{
+                exception=false;
+            }
+            
+        }while(exception==true);
+        
+        
+        
+        
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
@@ -465,8 +504,10 @@ public class menuprincipal extends javax.swing.JFrame {
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         // TODO add your handling code here:
-        escritorio.removeAll();
-        escritorio.repaint();
+        
+//        escritorio.removeAll();
+//        escritorio.repaint();
+        JOptionPane.showMessageDialog(null,"A continuación deberá seleccionar dos fechas, y se mostrarán todos los clientes que estuvieron alojados durante el período de tiempo formado por las mismas");
         buscarreservaporfecha brf = new buscarreservaporfecha();
         brf.setVisible(true);
         escritorio.add(brf);

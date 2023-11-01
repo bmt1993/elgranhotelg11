@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-
 public class reserva {
     
     private habitacion habitacion;
@@ -15,7 +14,8 @@ public class reserva {
     private String estadoreserva;
     private double montobase;
     private double montofinal;
-
+    private int idreserva;
+    
     public reserva(habitacion habitacion, huesped huesped, LocalDate checkin, LocalDate checkout, String estadoreserva) {
         this.habitacion = habitacion;
         this.huesped = huesped;
@@ -27,9 +27,6 @@ public class reserva {
     public reserva() {
     }
     
-    
-    
-
     public reserva(habitacion habitacion, huesped huesped, LocalDate checkin, LocalDate checkout, String estadoreserva, double montobase, double montofinal) {
         this.habitacion = habitacion;
         this.huesped = huesped;
@@ -38,6 +35,14 @@ public class reserva {
         this.estadoreserva = estadoreserva;
         this.montobase = montobase;
         this.montofinal = montofinal;
+    }
+
+    public int getIdreserva() {
+        return idreserva;
+    }
+
+    public void setIdreserva(int idreserva) {
+        this.idreserva = idreserva;
     }
 
     public habitacion getHabitacion() {
@@ -95,8 +100,4 @@ public class reserva {
     public void setMontofinal(double montofinal) {
         this.montofinal = montofinal;
     }
-
-    
-    
-    
 }

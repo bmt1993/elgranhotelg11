@@ -16,17 +16,50 @@ import javax.swing.JOptionPane;
  */
 public class mantenimientodata {
     
-    
     private Connection con=null;
     
     public mantenimientodata(){
         con=conexion.getconexion();
     }
     
-    
-    
-    
-     public void setearestadomantenimiento(){
+     public void guardaromantenimiento(int idhabitacion,LocalDate f1,LocalDate f2){
+         
+         String sql ="INSERT INTO mantenimiento (idhabitacion,fechainiciom,fechafinm,estadomantenimiento) VALUES (?,?,?,?)";
+         
+         
+         try{
+             PreparedStatement ps=con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+             ps.setInt(1, idhabitacion);
+             ps.setDate(2,Date.valueOf(f1));
+             ps.setDate(3,Date.valueOf(f2));
+             ps.setString(4,"Futuro");
+             ps.executeUpdate();
+             
+             ResultSet rs=ps.getGeneratedKeys();
+             
+             if(rs.next()){
+                 
+                 JOptionPane.showMessageDialog(null,"Mantenimiento correctamente guardado en la base de datos!");
+                 
+             }
+             
+             ps.close();
+             
+             
+         }catch (SQLException ex){
+            JOptionPane.showMessageDialog(null,"Error al conectarse a la base de datos");
+        }
+         
+         
+         
+         
+         
+        }
+     
+            public void setearestadomtto(){
+        
+        // Permite actualizar los estados de las reservas, y para ello compara las
+        // fechas de checkin y checkout con la fecha actual.
         
         
         int cantidad=0;
@@ -130,7 +163,7 @@ public class mantenimientodata {
         for(int p=0;p<=cantidad-1;p++){
             
             
-            String sql6="UPDATE estadomantenimientos=? FROM mantenimiento WHERE estadomantenimiento=?";
+            String sql6="UPDATE estadomantenimiento=? FROM mantenimiento WHERE idmantenimiento=?";
             
             
             try{
@@ -139,10 +172,10 @@ public class mantenimientodata {
                 PreparedStatement ps6=con.prepareStatement(sql6);
                 switch(estados.get(p)){
                     
+                    
                     case "Pasado":
                         ps6.setString(1,"Pasado");
                         break;
-                    
                         
                     case "Futuro":
                         
@@ -193,8 +226,10 @@ public class mantenimientodata {
         
         
     }
+     
+    }
     
     
    
     
-}
+

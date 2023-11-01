@@ -5,7 +5,7 @@
             <url>src/Vistas/habitacionesdisp.java</url>
             <bookmark id="1">
                 <name/>
-                <line>333</line>
+                <line>346</line>
                 <key/>
             </bookmark>
         </file>
@@ -21,9 +21,13 @@
             <file>file:/C:/Users/bmt/Documents/NetBeansProjects/elgranhotel/src/Vistas/menuprincipal.java</file>
             <file>file:/C:/Users/bmt/Documents/NetBeansProjects/elgranhotel/src/Vistas/buscarreserva.java</file>
             <file>file:/C:/Users/bmt/Documents/NetBeansProjects/elgranhotel/src/accesoadatos/huespeddata.java</file>
+            <file>file:/C:/Users/bmt/Documents/NetBeansProjects/elgranhotel/src/Vistas/mantenimiento.java</file>
+            <file>file:/C:/Users/bmt/Documents/NetBeansProjects/elgranhotel/src/Vistas/Setearprecio.java</file>
             <file>file:/C:/Users/bmt/Documents/NetBeansProjects/elgranhotel/src/accesoadatos/conexion.java</file>
+            <file>file:/C:/Users/bmt/Documents/NetBeansProjects/elgranhotel/src/accesoadatos/mantenimientodata.java</file>
             <file>file:/C:/Users/bmt/Documents/NetBeansProjects/elgranhotel/src/Entidades/mantenimiento.java</file>
             <file>file:/C:/Users/bmt/Documents/NetBeansProjects/elgranhotel/src/Entidades/tipohabitacion.java</file>
+            <file>file:/C:/Users/bmt/Documents/NetBeansProjects/elgranhotel/src/Vistas/buscarreservaporfecha.java</file>
             <file>file:/C:/Users/bmt/Documents/NetBeansProjects/elgranhotel/src/Entidades/habitacion.java</file>
             <file>file:/C:/Users/bmt/Documents/NetBeansProjects/elgranhotel/src/accesoadatos/habitaciondata.java</file>
             <file>file:/C:/Users/bmt/Documents/NetBeansProjects/elgranhotel/src/Vistas/habitacionesdisp.java</file>

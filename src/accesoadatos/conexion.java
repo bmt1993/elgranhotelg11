@@ -6,9 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-
 public class conexion {
-    
     
     private static final String URL="jdbc:mariadb://localhost/";
     private static final String DB="elgranhotelg11";
@@ -33,11 +31,6 @@ public class conexion {
             } 
             
         }
-        
         return connection;
-        
     }
-    
-    
-    
 }

@@ -66,6 +66,11 @@ public class habitaciondata {
     
     
     public boolean[] tiposdisponibles(ArrayList<habitacion> hab){
+        
+        // devuelve un vector booleano, en donde el valor de cada elemento refiere a la disponibilidad
+        // de al menos una habitación del tipo correspondiente al índice del elemento más una unidad
+        
+        
         boolean[] valor = new boolean[14];
         
         for(int j=0;j<=13;j++){
@@ -668,7 +673,88 @@ public class habitaciondata {
     }    
     
     
+    public void actualizaciondepreciosrelativos(double[] precios){
+        
+        // Recibiendo un vector de tamaño 14 con objetos double, actualiza los precios para cada uno
+        // de los tipos, que se corresponden con el índice del vector menos uno.
+        
+        for(int i=0;i<=13;i++){
+        String sql="UPDATE habitacion SET preciopornoche=? WHERE tipo=?";
+        
+        
+        try{
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setDouble(1,precios[i]);
+            ps.setInt(2,i+1);
+            int exito = ps.executeUpdate();
+            
+            if(exito==1){
+                            JOptionPane.showMessageDialog(null,"act");
+
+            }
+            
+            
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null,"Error al acceder a la base de datos");
+            }
+        
+                
+        }        
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    public double[] precioportipo(){
+        
+        // Devuelve un vector con los precios de las habitaciones, en donde el índice
+        // de cada elemento del vector se corresponde con el tipo de habitación,
+        // decrementado en una unidad.
+        
+        double[] precios=new double[14];
+        
+        for(int i=1;i<=14;i++){
+        
+        String sql = "SELECT preciopornoche FROM habitacion WHERE tipo=?";
+        
+        try{
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1,i);
+            ResultSet rs=ps.executeQuery();
+            
+            
+            if(rs.next()){
+                precios[i-1]=rs.getDouble("preciopornoche");
+            }
+            
+            ps.close();
+            
+            
+            
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null,"Error al acceder a la base de datos");
+            }
+        
+        
+        
+        }
+        
+        
+        return precios;
+    }
+    
+    
+    
     public void actualizacionporinflacion(double indice){
+        
+        // Recibe un valor double por parámetro, e incrementa el precio de todos los tipos de habitaciones
+        // en un porcentaje igual al mismo.
+        
+        
         String sql="UPDATE habitacion SET preciopornoche=(preciopornoche)*(1+?/100)";
         try{
             PreparedStatement ps=con.prepareStatement(sql);
@@ -681,26 +767,25 @@ public class habitaciondata {
     }
     
     
-    public void actualizaciondepreciosrelativos(ArrayList<Double> precios){
+    public void actualizaciondepreciosrelativos2(double[] precios){
+        
+        // Recibiendo un vector de tamaño 14 con objetos double, actualiza los precios para cada uno
+        // de los tipos, que se corresponden con el índice del vector menos uno.
         
         boolean error=false;
-        for(int i=0;i<=precios.size();i++){
+        for(int i=0;i<=13;i++){
             String sql="UPDATE habitacion SET preciopornoche=? WHERE tipo=?";
         try{
             PreparedStatement ps=con.prepareStatement(sql);
-            ps.setDouble(1,precios.get(i));
+            ps.setDouble(1,precios[i]);
             ps.setInt(2,i+1);
             ps.executeUpdate();
-            JOptionPane.showMessageDialog(null,"Actualización de precios por inflación realizada");
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null,"Error al acceder a la base de datos");
             error=true;
             }
             
-        if(error==false){
-            JOptionPane.showMessageDialog(null,"Actualización de precios relativos correctamente realizada!");
-        }    
-            
+        
             
             
             
@@ -713,6 +798,10 @@ public class habitaciondata {
         }
         
       public void setearestadohabitaciones(){
+          
+          
+          // Actualiza los estados de las habitaciones. Para ello se basa en la información
+          // de las tablas reserva y mantenimiento (tablas estadoreserva y estadomantenimiento).
             
             boolean[] estados = new boolean[200];
             
@@ -808,6 +897,9 @@ public class habitaciondata {
       
       
       public void setearlibrehasta(){
+          
+          // Actualiza la fecha hasta la que una determinada habitación estará libre
+          
           
           int[] librehasta=new int[200];
           

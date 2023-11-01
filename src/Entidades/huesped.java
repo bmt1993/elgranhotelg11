@@ -14,7 +14,6 @@ public class huesped {
     private String domicilio;
     private String pais;
     
-    
     public huesped(int dni){
         this.dni=dni;
     }
@@ -88,11 +87,4 @@ public class huesped {
     public void setPais(String pais) {
         this.pais = pais;
     }
-
-    
-   
-    
-    
-    
-    
 }

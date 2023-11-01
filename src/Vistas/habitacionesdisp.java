@@ -296,7 +296,7 @@ public class habitacionesdisp extends javax.swing.JInternalFrame {
         
         
         
-        llenarcampos(hab5);
+        llenarcampos(hab5,nuevashab.precioportipo());
         
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -354,7 +354,7 @@ public class habitacionesdisp extends javax.swing.JInternalFrame {
                     }while(hab4.get(p).getTipohabitacion().getTipo()!=Integer.parseInt(tipoareservar));
                     habitacion habitacionareservar=hab4.get(p);
                     boolean existencia = hues.comprobarexistencia(Integer.parseInt(dni));
-                    formnuevocliente nuevoCliente = new formnuevocliente(Integer.parseInt(dni),f1,f2,habitacionareservar,existencia,this);
+                    formnuevocliente nuevoCliente = new formnuevocliente(Integer.parseInt(dni),f1,f2,habitacionareservar,existencia,this,hues.buscarhuespedpordni(Integer.parseInt(dni)));
                     if(existencia==true){
                         JOptionPane.showMessageDialog(null,"El DNI ingresado ya existe en la base de datos. A continuación, podrá cotejar si los datos del cliente se encuentran actualizados.");
                         nuevoCliente.textoboton(existencia);
@@ -455,7 +455,7 @@ public class habitacionesdisp extends javax.swing.JInternalFrame {
     
     
     
-    private void llenarcampos(boolean[] tiposdisp){
+    private void llenarcampos(boolean[] tiposdisp,double[] precios){
         String[] vector=new String[5];
         for(int i=0;i<=13;i++){
             if(tiposdisp[i]==true){
@@ -464,98 +464,98 @@ public class habitacionesdisp extends javax.swing.JInternalFrame {
                             vector[0]="Comfort";
                             vector[1]="2";
                             vector[2]="-";
-                            vector[3]="$";
+                            vector[3]="$"+precios[1];
                             vector[4]="1";
                             break;
                         case 2:
                             vector[0]="Comfort";
                             vector[1]="-";
                             vector[2]="1";
-                            vector[3]="$";
+                            vector[3]="$"+precios[0];
                             vector[4]="2";
                             break;    
                         case 3:
                             vector[0]="Privilege";
                             vector[1]="2";
                             vector[2]="-";
-                            vector[3]="$";
+                            vector[3]="$"+precios[2];
                             vector[4]="3";
                             break;    
                         case 4:
                             vector[0]="Privilege";
                             vector[1]="-";
                             vector[2]="1";
-                            vector[3]="$";
+                            vector[3]="$"+precios[3];
                             vector[4]="4";
                             break;    
                         case 5:
                             vector[0]="Luxury";
                             vector[1]="2";
                             vector[2]="-";
-                            vector[3]="$";
+                            vector[3]="$"+precios[4];
                             vector[4]="5";
                             break;    
                         case 6:
                             vector[0]="Luxury";
                             vector[1]="-";
                             vector[2]="1";
-                            vector[3]="$";
+                            vector[3]="$"+precios[5];
                             vector[4]="6";
                             break;
                         case 7:
                             vector[0]="Privilege";
                             vector[1]="3";
                             vector[2]="-";
-                            vector[3]="$";
+                            vector[3]="$"+precios[6];
                             vector[4]="7";
                             break;
                         case 8:
                             vector[0]="Privilege";
                             vector[1]="1";
                             vector[2]="1";
-                            vector[3]="$";
+                            vector[3]="$"+precios[7];
                             vector[4]="8";
                             break;    
                         case 9:
                             vector[0]="Luxury";
                             vector[1]="3";
                             vector[2]="-";
-                            vector[3]="$";
+                            vector[3]="$"+precios[8];
                             vector[4]="9";
                             break;    
                         case 10:
                             vector[0]="Luxury";
                             vector[1]="1";
                             vector[2]="1";
-                            vector[3]="$";
+                            vector[3]="$"+precios[9];
                             vector[4]="10";
                             break;    
                         case 11:
                             vector[0]="Privilege";
                             vector[1]="4";
                             vector[2]="-";
-                            vector[3]="$";
+                            vector[3]="$"+precios[10];
                             vector[4]="11";
                             break;    
                         case 12:
                             vector[0]="Privilege";
                             vector[1]="2";
                             vector[2]="1";
-                            vector[3]="$";
+                            vector[3]="$"+precios[11];
                             vector[4]="12";
                             break;
                         case 13:
                             vector[0]="Luxury";
                             vector[1]="4";
                             vector[2]="-";
-                            vector[3]="$";
+                            vector[3]="$"+precios[12];
                             vector[4]="13";
                             break;
                         default:
                             vector[0]="Luxury";
                             vector[1]="2";
                             vector[2]="1";
-                            vector[3]="$";
+                            vector[3]="$"+precios[13];
                             vector[4]="14";
                             break;
                 }   

@@ -5,6 +5,9 @@
  */
 package Vistas;
 
+import accesoadatos.habitaciondata;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author bmt
@@ -14,8 +17,12 @@ public class actualizacionpreciosrelativos extends javax.swing.JInternalFrame {
     /**
      * Creates new form actualizacionpreciosrelativos
      */
+    habitaciondata hab =new habitaciondata();
+    
+    
     public actualizacionpreciosrelativos() {
         initComponents();
+        llenarcampos(hab.precioportipo());
     }
 
     /**
@@ -89,9 +96,25 @@ public class actualizacionpreciosrelativos extends javax.swing.JInternalFrame {
 
         jLabel15.setText("Tipo 14:");
 
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+
         jButton1.setText("Actualizar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Salir");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -216,6 +239,63 @@ public class actualizacionpreciosrelativos extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        
+        this.setVisible(false);
+        
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+       
+        
+        
+        
+    try{
+            
+            
+        habitaciondata habs = new habitaciondata();
+        
+        double[] preciosactualizados = new double[14];
+        
+        preciosactualizados[0]=Double.parseDouble(jTextField1.getText());
+        preciosactualizados[1]=Double.parseDouble(jTextField2.getText());
+        preciosactualizados[2]=Double.parseDouble(jTextField3.getText());
+        preciosactualizados[3]=Double.parseDouble(jTextField4.getText());
+        preciosactualizados[4]=Double.parseDouble(jTextField5.getText());
+        preciosactualizados[5]=Double.parseDouble(jTextField6.getText());
+        preciosactualizados[6]=Double.parseDouble(jTextField7.getText());
+        preciosactualizados[7]=Double.parseDouble(jTextField8.getText());
+        preciosactualizados[8]=Double.parseDouble(jTextField9.getText());
+        preciosactualizados[9]=Double.parseDouble(jTextField10.getText());
+        preciosactualizados[10]=Double.parseDouble(jTextField11.getText());
+        preciosactualizados[11]=Double.parseDouble(jTextField12.getText());
+        preciosactualizados[12]=Double.parseDouble(jTextField13.getText());
+        preciosactualizados[13]=Double.parseDouble(jTextField14.getText());
+        
+        habs.actualizaciondepreciosrelativos2(preciosactualizados);
+        
+                JOptionPane.showMessageDialog(null,"Se han actualizado correctamente los precios!");
+
+        
+        this.setVisible(false);
+        
+    }catch(NumberFormatException nfe){
+        JOptionPane.showMessageDialog(null,"Debe ingresar valores numéricos. Utilice el punto('.') como separador decimal");
+    }
+        
+        
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -250,4 +330,50 @@ public class actualizacionpreciosrelativos extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
+
+
+
+    private void llenarcampos(double[] precios){
+        
+        
+        String[] precioss=new String[14];
+        
+        for(int i=0;i<=13;i++){
+            
+            precioss[i]=Double.toString(precios[i]);
+            
+            
+            
+        }
+        
+        
+        jTextField1.setText(precioss[0]);
+        jTextField2.setText(precioss[1]);
+        jTextField3.setText(precioss[2]);
+        jTextField4.setText(precioss[3]);
+        jTextField5.setText(precioss[4]);
+        jTextField6.setText(precioss[5]);
+        jTextField7.setText(precioss[6]);
+        jTextField8.setText(precioss[7]);
+        jTextField9.setText(precioss[8]);
+        jTextField10.setText(precioss[9]);
+        jTextField11.setText(precioss[10]);
+        jTextField12.setText(precioss[11]);
+        jTextField13.setText(precioss[12]);
+        jTextField14.setText(precioss[13]);
+        
+        
+        
+        
+        
+        
+        
+    } 
+
+
+
+
+
+
+
 }

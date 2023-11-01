@@ -142,6 +142,7 @@ public class editarreserva extends javax.swing.JInternalFrame {
             
         res.abortarreserva(res.buscarreservadni(dni).get(el));
         
+//        res.determinarpreciosabortada(res, el);
         
         
 //        JOptionPane.showMessageDialog(null,);
@@ -189,8 +190,9 @@ public class editarreserva extends javax.swing.JInternalFrame {
                 vector[1]=res.get(i).getCheckin();
                 vector[2]=res.get(i).getCheckout();
                 vector[3]=res.get(i).getEstadoreserva();
+                modelotabla.addRow(vector);
             }
-            modelotabla.addRow(vector);
+            
         }
 //        modelotabla.addRow(vector);
     }

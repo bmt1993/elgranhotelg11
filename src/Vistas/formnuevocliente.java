@@ -30,12 +30,13 @@ public class formnuevocliente extends javax.swing.JInternalFrame {
     private LocalDate f2;
     private boolean existencia;
     private habitacionesdisp hd;
+    private huesped huespedres;
    
     
     private habitacion habitacionareservar;
     
     
-    public formnuevocliente(int dni,LocalDate f1,LocalDate f2, habitacion habitacionareservar,boolean existencia,habitacionesdisp hd) {
+    public formnuevocliente(int dni,LocalDate f1,LocalDate f2, habitacion habitacionareservar,boolean existencia,habitacionesdisp hd,huesped huespedres) {
         initComponents();
         this.dni=dni;
         this.f1=f1;
@@ -43,6 +44,14 @@ public class formnuevocliente extends javax.swing.JInternalFrame {
         this.habitacionareservar=habitacionareservar;
         this.existencia=existencia;
         this.hd=hd;
+        this.huespedres=huespedres;
+        
+        
+        if(this.existencia==true){
+            campos(this.huespedres);
+        }
+        
+        
     }
 
     public int getDni() {
@@ -100,6 +109,12 @@ public class formnuevocliente extends javax.swing.JInternalFrame {
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("Email:");
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar un país", "Afganistán", "Albania", "Alemania", "Andorra", "Angola", "Antigua y Barbuda", "Arabia Saudita", "Argelia", "Argentina", "Armenia", "Australia", "Austria", "Azerbaiyán", "Bahamas", "Bangladés", "Barbados", "Baréin", "Bélgica", "Belice", "Benín", "Bielorrusia", "Birmania (Myanmar)", "Bolivia", "Bosnia y Herzegovina", "Botsuana", "Brasil", "Brunéi", "Bulgaria", "Burkina Faso", "Burundi", "Bután", "Cabo Verde", "Camboya", "Camerún", "Canadá", "Catar", "Chad", "Chile", "China", "Chipre", "Ciudad del Vaticano", "Colombia", "Comoras", "Corea del Norte", "Corea del Sur", "Costa de Marfil", "Costa Rica", "Croacia", "Cuba", "Dinamarca", "Dominica", "Ecuador", "Egipto", "El Salvador", "Emiratos Árabes Unidos", "Eritrea", "Eslovaquia", "Eslovenia", "España", "Estados Unidos", "Estonia", "Esuatini", "Etiopía", "Filipinas", "Finlandia", "Fiyi", "Francia", "Gabón", "Gambia", "Georgia", "Ghana", "Granada", "Grecia", "Guatemala", "Guinea", "Guinea Ecuatorial", "Guinea-Bisáu", "Guyana", "Haití", "Honduras", "Hungría", "India", "Indonesia", "Irak", "Irán", "Irlanda", "Islandia", "Islas Marshall", "Islas Salomón", "Israel", "Italia", "Jamaica", "Japón", "Jordania", "Kazajistán", "Kenia", "Kirguistán", "Kiribati", "Kosovo", "Kuwait", "Laos", "Lesoto", "Letonia", "Líbano", "Liberia", "Libia", "Liechtenstein", "Lituania", "Luxemburgo", "Macedonia del Norte", "Madagascar", "Malasia", "Malaui", "Maldivas", "Malí", "Malta", "Marruecos", "Mauricio", "Mauritania", "México", "Micronesia", "Moldavia", "Mónaco", "Mongolia", "Montenegro", "Mozambique", "Namibia", "Nauru", "Nepal", "Nicaragua", "Níger", "Nigeria", "Noruega", "Nueva Zelanda", "Omán", "Países Bajos", "Pakistán", "Palaos", "Panamá", "Papúa Nueva Guinea", "Paraguay", "Perú", "Polonia", "Portugal", "Reino Unido", "República Centroafricana", "República Checa", "República Democrática del Congo", "República Dominicana", "Ruanda", "Rumania", "Rusia", "Samoa", "San Cristóbal y Nieves", "San Marino", "Santa Lucía", "Santo Tomé y Príncipe", "Senegal", "Serbia", "Seychelles", "Sierra Leona", "Singapur", "Siria", "Somalia", "Sri Lanka", "Sudáfrica", "Sudán", "Sudán del Sur", "Suecia", "Suiza", "Surinam", "Tailandia", "Tayikistán", "Tanzania", "Timor Oriental", "Togo", "Tonga", "Trinidad y Tobago", "Túnez", "Turkmenistán", "Turquía", "Tuvalu", "Ucrania", "Uganda", "Uruguay", "Uzbekistán", "Vanuatu", "Venezuela", "Vietnam", "Yemen", "Yibuti", "Zambia", "Zimbabue" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -264,6 +279,10 @@ public class formnuevocliente extends javax.swing.JInternalFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -283,5 +302,26 @@ public class formnuevocliente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
 
+    
+    
+    private void campos(huesped hues){
+        
+        jTextField1.setText(hues.getNombre());
+        jTextField2.setText(hues.getApellido());
+        jTextField3.setText(hues.getDomicilio());
+        jTextField5.setText(hues.getTelefono());
+        jTextField6.setText(hues.getEmail());
+        jComboBox1.setSelectedItem(hues.getPais());
+        
+        
+        
+        
+    }
+    
+    
+   
+    
+    
+    
 }
   

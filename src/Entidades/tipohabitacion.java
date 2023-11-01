@@ -61,18 +61,6 @@ public class tipohabitacion {
         this.preciopornoche = preciopornoche;
     }
     
-    
-    
     public void determinartipo(int cat,int camassimples,int camasdobles) {
-    
-    
-    
-    
-    
     }
-    
-    
-    
-    
-    
 }

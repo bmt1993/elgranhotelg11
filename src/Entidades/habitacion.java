@@ -16,9 +16,6 @@ public class habitacion {
         this.piso = piso;
         this.tipohabitacion = tipohabitacion;
     }
-    
-    
-    
 
     public habitacion(int idhabitacion, int piso, String estadohabitacion, tipohabitacion tipohabitacion) {
         this.idhabitacion = idhabitacion;
@@ -28,7 +25,6 @@ public class habitacion {
     }
 
     public habitacion() {
-        
     }
 
     public int getIdhabitacion() {
